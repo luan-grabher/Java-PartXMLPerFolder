@@ -1,0 +1,20 @@
+#COMO USAR O FILTRO:
+#
+# Separe por # o que deve ter e o que não deve ter respectivamente.
+# Separe os termos que devem e nao devem ter por ';'
+#
+#EXEMPLO DE FILTRO:
+#	(Texto que possua 'exame', 'com' e 'cirurgia', e NÃO possua 'joao')
+#	'exame;com;cirurgia#joao'
+#
+#	"Exame com Cirurgia - Médico Adilson"	-	CORRESPONDE AO FILTRO
+#	"Exame com Cirurgia - Médico Adilson"	-	NÃO CORRESPONDE AO FILTRO
+#
+#
+#Separe as colunas 'Id produto' e 'Filtro' com um ';'.
+#Não se preocupe em utilizar mais ';' para o filtro depois do ';' que separa as duas colunas.
+#O programa só irá separar por duas colunas, o que estiver depois do primeiro ';' será considerado valor da segunda coluna.
+#
+#ABRA ESTE ARQUIVO COMO TEXTO PARA VISUALIZAR MELHOR.
+#O EXCEL IRÁ EXIBIR DE FORMA ERRADA
+#Id Produto;Filtro

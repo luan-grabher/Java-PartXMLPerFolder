@@ -28,31 +28,34 @@ public class PartXML {
     public static void partXMLs() {
         for (File xmlFile : xmlFiles) {
             try {
-                XML xml = new XML(xmlFile);
-                NodeList products = xml.doc.getElementsByTagName("Discriminacao");
+                if (xmlFile.getName().endsWith(".xml")) {
 
-                if (products.item(0) != null) {
-                    String product = products.item(0).getTextContent();
+                    XML xml = new XML(xmlFile);
+                    NodeList products = xml.doc.getElementsByTagName("Discriminacao");
 
-                    List<String> foundFilters = new ArrayList<>();
+                    //Somente se tiver a discriminação
+                    if (products.item(0) != null) {
+                        String product = products.item(0).getTextContent();
 
-                    filters.forEach((filter, name) -> {
-                        StringFilter sf = new StringFilter(filter);
-                        //Se tiver o filtro na Discriminacao
-                        if (sf.filterOfString(product)) {
-                            foundFilters.add(name);
+                        List<String> foundFilters = new ArrayList<>();
+
+                        filters.forEach((filter, name) -> {
+                            StringFilter sf = new StringFilter(filter);
+                            //Se tiver o filtro na Discriminacao
+                            if (sf.filterOfString(product)) {
+                                foundFilters.add(name);
+                            }
+                        });
+
+                        if (foundFilters.size() == 1) {
+                            saveFileOnFolder(xmlFile, foundFilters.get(0));
+                        } else if (foundFilters.size() > 1) {
+                            saveFileOnFolder(xmlFile, "Mais de 1 produto");
+                        } else {
+                            saveFileOnFolder(xmlFile, "Nenhum produto encontrado");
                         }
-                    });
-
-                    if (foundFilters.size() == 1) {
-                        saveFileOnFolder(xmlFile, foundFilters.get(0));
-                    } else if (foundFilters.size() > 1) {
-                        saveFileOnFolder(xmlFile, "Mais de 1 produto");
-                    } else {
-                        saveFileOnFolder(xmlFile, "Nenhum produto encontrado");
                     }
                 }
-
             } catch (Exception ex) {
                 throw new Error(ex);
             }

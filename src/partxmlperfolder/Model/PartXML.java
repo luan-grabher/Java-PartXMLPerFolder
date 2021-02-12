@@ -15,15 +15,8 @@ public class PartXML {
     public static File[] xmlFiles = null;
 
     /**
-     * -- Se tiver 1 filtro encontrado
-     * --- Cria pasta com o numero do produto(valor do mapa) se nao existir
-     * --- Salva arquivo
-     * -- Se tiver mais de 1 filtro
-     * --- Cria pasta se não existir "Mais de 1 produto"
-     * --- Salva arquivo
-     * -- Se não
-     * --- Cria pasta se não existir "Nenhum produto cadastrado"
-     * --- Salva arquivo
+     * Separa os arquivos XMLs em pastas dentro da pasta em que estão conforme o
+     * produto do XML da nota.
      */
     public static void partXMLs() {
         for (File xmlFile : xmlFiles) {
@@ -62,6 +55,12 @@ public class PartXML {
         }
     }
 
+    /**
+     * Salva uma cópia do arquivo em uma pasta definida em @newFolder dentro da pasta em que já está.
+     * 
+     * @param newFolder Nome da pasta que será salvo
+     * @param Arquivo que será salvo
+     */
     private static void saveFileOnFolder(File xmlFile, String newFolder) {
         // Cria pasta se não existir "Mais de 1 produto"
         File folder = new File(xmlFile.getParent() + "\\" + newFolder);
